@@ -21,6 +21,47 @@ const fizzBuzz = (state = { inputValue: '', result: 'no result' }, action) => {
   }
 };
 
+const reversed = (state = { inputValue: '', result: 'no result' }, action) => {
+  switch (action.type) {
+    case 'REVERSE_UPDATE':
+      return {
+        inputValue: action.value,
+        result: action.value.split('').reverse().join('')
+      };
+    default:
+      return state;
+  }
+};
+
+const reversedSentence = (state = { inputValue: '', result: 'no result' }, action) => {
+  switch (action.type) {
+    case 'REVERSED_SENTENCE_UPDATE':
+      return {
+        inputValue: action.value,
+        result: action.value.split(' ').reverse().join(' ')
+      };
+    default:
+      return state;
+  }
+};
+
+const todo = (state = { tasks: [], formValue: '' }, action) => {
+  switch (action.type) {
+    case 'FORM_VALUE_CHANGE':
+      return { ...state, formValue: action.value };
+    case 'RECEIVE_TASKS':
+      return { ...state, tasks: action.tasks };
+    case 'TASK_ADDED':
+      return { ...state, tasks: [...state.tasks, action.task] };
+    default:
+      return state;
+  }
+};
+
+
 export default combineReducers({
-  fizzBuzz
+  fizzBuzz,
+  reversed,
+  reversedSentence,
+  todo
 });

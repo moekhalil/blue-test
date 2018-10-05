@@ -21,7 +21,7 @@ class Example extends Component {
           </div>
         </div>
         <div className="results">
-          <h3>{result}</h3>
+          <h4>{result}</h4>
         </div>
       </div>
     );
