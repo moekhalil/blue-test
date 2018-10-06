@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './styles.sass'; // style-loader is the webpack loader that handles sass
 
+// style-loader is the webpack loader that handles sass, so I didn't have to
+//  do anything special to support since I was basing this off create-react-app
+import './styles.sass';
 
 class Example extends Component {
   render() {
@@ -28,6 +30,7 @@ class Example extends Component {
   }
 }
 
+// ideally, some of these custom oneOfType's can be pulled into a file
 Example.propTypes = {
   header: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -36,7 +39,10 @@ Example.propTypes = {
     PropTypes.string
   ]).isRequired,
   children: PropTypes.node.isRequired,
-  result: PropTypes.string.isRequired
+  result: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]).isRequired
 };
 
 export default Example;

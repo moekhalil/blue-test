@@ -3,32 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Example from '../Example';
 import { fetchTasks, addTask, changeFormValue } from './actions';
+import Create from './Create';
 import './styles.sass';
 
-const Create = ({ formValue, onAdd, onChange }) => (
-  <div className="create-task">
-    <input
-      className="form-control form-control-lg"
-      type="text"
-      placeholder="Add a task"
-      value={formValue}
-      onChange={onChange}
-    />
-    <button
-      type="button"
-      onClick={() => onAdd(formValue)}
-      className="btn btn-primary btn-lg active"
-    >
-      Create
-    </button>
-  </div>
-);
 
 const List = ({ tasks }) => (
   <ul className="list-group">
     { tasks.map(task => <li key={task} className="list-group-item">{task}</li>) }
   </ul>
 );
+
+List.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 
 class ToDo extends Component {
@@ -64,6 +51,7 @@ ToDo.propTypes = {
   formValue: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
   onAdd: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   fetchTasks: PropTypes.func.isRequired
 };
 
